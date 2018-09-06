@@ -1,6 +1,6 @@
 # Pizza Shop Exercise
 
-**Pizza Shop** is a **Spring** application for ordering pizzas and other products.
+**Pizza Shop** is a **Spring Boot** application for ordering pizzas and other products.
 
 ## Requirements
 

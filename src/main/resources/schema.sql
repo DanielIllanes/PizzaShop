@@ -1,0 +1,4 @@
+CREATE TABLE topping(
+  id     INT PRIMARY KEY AUTO_INCREMENT,
+  name   VARCHAR(100)
+);
