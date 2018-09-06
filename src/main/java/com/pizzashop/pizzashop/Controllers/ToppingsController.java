@@ -3,8 +3,11 @@ package com.pizzashop.pizzashop.Controllers;
 import com.pizzashop.pizzashop.Models.Topping;
 import com.pizzashop.pizzashop.Repositories.ToppingsRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/toppings")
@@ -15,8 +18,13 @@ public class ToppingsController {
         this.toppingsRepository = toppingsRepository;
     }
 
-    @GetMapping("/all")
-    public Iterable<Topping> all(){
+    @GetMapping("")
+    public Iterable<Topping> allToppings(){
         return this.toppingsRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Topping> all(@PathVariable(value= "id") Long id){
+        return this.toppingsRepository.findById(id);
     }
 }
