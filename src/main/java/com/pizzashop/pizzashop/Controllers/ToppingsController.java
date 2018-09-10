@@ -18,7 +18,7 @@ public class ToppingsController {
         this.toppingsRepository = toppingsRepository;
     }
 
-    @GetMapping("")
+    @GetMapping
     public Iterable<Topping> allToppings(){
         return this.toppingsRepository.findAll();
     }
