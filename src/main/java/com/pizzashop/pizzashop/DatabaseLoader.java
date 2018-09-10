@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 public class DatabaseLoader implements CommandLineRunner {
     private ToppingsRepository toppingsRepository;
 
-    public DatabaseLoader(ToppingsRepository tRepository){
-        this.toppingsRepository = tRepository;
+    public DatabaseLoader(ToppingsRepository toppingsRepository){
+        this.toppingsRepository = toppingsRepository;
     }
 
     @Override
