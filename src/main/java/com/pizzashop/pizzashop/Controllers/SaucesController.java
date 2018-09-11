@@ -1,15 +1,15 @@
 package com.pizzashop.pizzashop.Controllers;
 
-import com.pizzashop.pizzashop.Models.Cheese;
+import com.pizzashop.pizzashop.Models.Sauce;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/cheeses")
-public class CheesesController {
+@RequestMapping("/sauces")
+public class SaucesController {
     @GetMapping
-    public Cheese[] allCheeses(){
-        return Cheese.values();
+    public Sauce[] allCheeses(){
+        return Sauce.values();
     }
 }
