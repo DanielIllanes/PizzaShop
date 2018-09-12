@@ -1,6 +1,6 @@
 package com.pizzashop.pizzashop.Controllers;
 
-import com.pizzashop.pizzashop.Models.Topping;
+import com.pizzashop.pizzashop.Models.Toppings;
 import com.pizzashop.pizzashop.Repositories.ToppingsRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +19,12 @@ public class ToppingsController {
     }
 
     @GetMapping
-    public Iterable<Topping> allToppings(){
+    public Iterable<Toppings> allToppings(){
         return this.toppingsRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Topping> byId(@PathVariable(value = "id") Long id){
+    public Optional<Toppings> byId(@PathVariable(value = "id") Long id){
         return this.toppingsRepository.findById(id);
     }
 }

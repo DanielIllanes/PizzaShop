@@ -27,19 +27,20 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
+        /*
         this.toppingsRepository.deleteAll();
 
-        Topping topping1 = new Topping("Corn");
-        Topping topping2 = new Topping("Bacon");
-        Topping topping3 = new Topping("Onions");
-        Topping topping4 = new Topping("Green Olives");
-        Topping topping5 = new Topping("Mushrooms");
-        Topping topping6 = new Topping("Pineapple");
+        Toppings topping1 = new Toppings("Corn");
+        Toppings topping2 = new Toppings("Bacon");
+        Toppings topping3 = new Toppings("Onions");
+        Toppings topping4 = new Toppings("Green Olives");
+        Toppings topping5 = new Toppings("Mushrooms");
+        Toppings topping6 = new Toppings("Pineapple");
 
-        Ingredient ingredient1 = new Ingredient("Flour");
-        Ingredient ingredient2 = new Ingredient("Pepperoni");
-        Ingredient ingredient3 = new Ingredient("Crushed red pepper");
-        Ingredient ingredient4 = new Ingredient("yeast");
+        Ingredients ingredient1 = new Ingredients("Flour");
+        Ingredients ingredient2 = new Ingredients("Pepperoni");
+        Ingredients ingredient3 = new Ingredients("Crushed red pepper");
+        Ingredients ingredient4 = new Ingredients("yeast");
 
         this.ingredientsRepository.save(ingredient1);
         this.ingredientsRepository.save(ingredient2);
@@ -62,20 +63,20 @@ public class DatabaseLoader implements CommandLineRunner {
         ingredients.add("2");
         ingredients.add("4");
 
-        PizzaType pizzaType1 = new PizzaType("Hawaiian");
-        PizzaType pizzaType2 = new PizzaType("Spagnole");
-        PizzaType pizzaType3 = new PizzaType("Brazilian");
-        PizzaType pizzaType4 = new PizzaType("Veggie");
+        PizzaTypes pizzaType1 = new PizzaTypes("Hawaiian");
+        PizzaTypes pizzaType2 = new PizzaTypes("Spagnole");
+        PizzaTypes pizzaType3 = new PizzaTypes("Brazilian");
+        PizzaTypes pizzaType4 = new PizzaTypes("Veggie");
 
         this.pizzasTypesRepository.save(pizzaType1);
         this.pizzasTypesRepository.save(pizzaType2);
         this.pizzasTypesRepository.save(pizzaType3);
         this.pizzasTypesRepository.save(pizzaType4);
 
-        Pizza pizza1 = new Pizza(pizzaType1, Sauce.TOMATO, Cheese.CHEDDAR, Crust.THIN, toppings , ingredients);
-        Pizza pizza2 = new Pizza(pizzaType2, Sauce.TOMATO, Cheese.ROQUEFORT, Crust.THIN, toppings, ingredients);
-        Pizza pizza3 = new Pizza(pizzaType3, Sauce.TOMATO, Cheese.MANCHEGO, Crust.THIN, toppings, ingredients);
-        Pizza pizza4 = new Pizza(pizzaType4, Sauce.TOMATO, Cheese.ROQUEFORT, Crust.FILLED_WITH_CHEESE, toppings, ingredients);
+        Pizzas pizza1 = new Pizzas(pizzaType1, Sauce.TOMATO, Cheese.CHEDDAR, Crust.THIN, toppings , ingredients);
+        Pizzas pizza2 = new Pizzas(pizzaType2, Sauce.TOMATO, Cheese.ROQUEFORT, Crust.THIN, toppings, ingredients);
+        Pizzas pizza3 = new Pizzas(pizzaType3, Sauce.TOMATO, Cheese.MANCHEGO, Crust.THIN, toppings, ingredients);
+        Pizzas pizza4 = new Pizzas(pizzaType4, Sauce.TOMATO, Cheese.ROQUEFORT, Crust.FILLED_WITH_CHEESE, toppings, ingredients);
 
         this.pizzasRepository.save(pizza1);
         this.pizzasRepository.save(pizza2);
@@ -90,6 +91,7 @@ public class DatabaseLoader implements CommandLineRunner {
         this.productsRepository.save(product2);
         this.productsRepository.save(product3);
 
+*/
         System.out.println(" -- Database has been initialized");
     }
 }

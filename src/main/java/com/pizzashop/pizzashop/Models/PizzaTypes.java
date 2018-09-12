@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class PizzaType {
+public class PizzaTypes {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
@@ -15,9 +15,9 @@ public class PizzaType {
     @NotNull
     private String name;
 
-    protected PizzaType(){}
+    protected PizzaTypes(){}
 
-    public PizzaType(String name){
+    public PizzaTypes(String name){
         this.name = name;
     }
 

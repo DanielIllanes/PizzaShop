@@ -1,20 +1,18 @@
 package com.pizzashop.pizzashop.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Topping {
+@Table(name = "toppings")
+public class Toppings {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String name;
 
-    protected Topping(){}
+    protected Toppings(){}
 
-    public Topping(String name){
+    public Toppings(String name){
         this.name = name;
     }
 

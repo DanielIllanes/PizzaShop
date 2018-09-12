@@ -1,6 +1,6 @@
 package com.pizzashop.pizzashop.Controllers;
 
-import com.pizzashop.pizzashop.Models.Pizza;
+import com.pizzashop.pizzashop.Models.Pizzas;
 import com.pizzashop.pizzashop.Repositories.IngredientsRepository;
 import com.pizzashop.pizzashop.Repositories.PizzasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/pizzas")
@@ -24,11 +25,15 @@ public class PizzasController {
     }
 
     @GetMapping()
-    public Iterable<Pizza> allPizzas(){
-        Iterable<Pizza> pizzas = this.pizzasRepository.findAll();
-        pizzas.forEach(item -> item.setIngredients(convertIngredients(item.getIngredients())));
-        pizzas.forEach(item -> item.setToppings(convertToppings(item.getToppings())));
-        return pizzas;
+    public Iterable<Pizzas> allPizzas(){
+        return this.pizzasRepository.findAll();
+        //Iterable<Pizzas> pizzas =
+        //System.out.println(pizzas.toString());
+        //pizzas.forEach(item -> System.out.println(item.getIngredients()));
+        //pizzas.forEach(item -> System.out.println(item.getToppings()));
+        //pizzas.forEach(item -> item.setIngredients(convertIngredients(item.getIngredients())));
+        //pizzas.forEach(item -> item.setToppings(convertToppings(item.getToppings())));
+        //return pizzas;
     }
 
     public List<String> convertIngredients(List<String> ingredientsIdList){

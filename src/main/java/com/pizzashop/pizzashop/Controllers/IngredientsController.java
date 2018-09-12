@@ -1,6 +1,6 @@
 package com.pizzashop.pizzashop.Controllers;
 
-import com.pizzashop.pizzashop.Models.Ingredient;
+import com.pizzashop.pizzashop.Models.Ingredients;
 import com.pizzashop.pizzashop.Repositories.IngredientsRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,21 +19,21 @@ public class IngredientsController {
     }
 
     @GetMapping
-    public Iterable<Ingredient> allIngredients(){
+    public Iterable<Ingredients> allIngredients(){
         return this.ingredientsRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Ingredient> byId(@PathVariable(value= "id") Long id){
+    public Optional<Ingredients> byId(@PathVariable(value= "id") Long id){
         return this.ingredientsRepository.findById(id);
     }
 
     @GetMapping("/new/{name}")
     public String addIngredient(@PathVariable(value = "name") String name) {
-        Ingredient ingredient = new Ingredient(name);
+        Ingredients ingredient = new Ingredients(name);
         if(this.ingredientsRepository.save(ingredient) != null){
-            return "Ingredient added successfully";
+            return "Ingredients added successfully";
         }
-        return "Something went wrong adding the new Ingredient";
+        return "Something went wrong adding the new Ingredients";
     }
 }

@@ -6,20 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Pizza {
+@Table(name = "pizzas")
+public class Pizzas {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
     @NotNull
-    @OneToOne
-    @ElementCollection
-    private PizzaType type;
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    @Enumerated(EnumType.STRING)
+    private PizzaTypes pizzatype;
+
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Crust crust;
+
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Cheese cheese;
+
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Sauce sauce;
 
     @ElementCollection
@@ -27,26 +35,29 @@ public class Pizza {
     private List<String> toppings = new ArrayList();
 
     @ElementCollection
-    @CollectionTable(name = "toppings")
+    @CollectionTable(name = "ingredients")
     private List<String> ingredients = new ArrayList();
 
-    protected Pizza(){}
+    protected Pizzas(){}
 
-    public Pizza(PizzaType name, Sauce sauce, Cheese cheese, Crust crust, List<String> toppings, List<String> ingredients){
-        this.type = name;
+    public Pizzas(PizzaTypes name, Sauce sauce, Cheese cheese, Crust crust, List<String> toppings, List<String> ingredients){
+        this.pizzatype = name;
         this.sauce = sauce;
         this.cheese = cheese;
         this.crust = crust;
         this.toppings = toppings;
         this.ingredients = ingredients;
+        System.out.println(crust);
+        System.out.println(crust.toString());
+        System.out.println(crust.name());
     }
 
-    public void setType(PizzaType type){
-        this.type = type;
+    public void setPizzatype(PizzaTypes pizzatype){
+        this.pizzatype = pizzatype;
     }
 
-    public PizzaType getType(){
-        return this.type;
+    public PizzaTypes getPizzatype(){
+        return this.pizzatype;
     }
 
     public Crust getCrust() {
@@ -87,13 +98,5 @@ public class Pizza {
 
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }

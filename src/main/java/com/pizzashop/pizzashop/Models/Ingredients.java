@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Ingredient {
+public class Ingredients {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
@@ -15,9 +15,9 @@ public class Ingredient {
     @NotNull
     private String name;
 
-    protected Ingredient(){}
+    protected Ingredients(){}
 
-    public Ingredient(String name){ this.name = name; }
+    public Ingredients(String name){ this.name = name; }
 
     public long getId() {
         return id;
