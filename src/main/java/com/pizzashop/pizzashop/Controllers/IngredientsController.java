@@ -19,7 +19,7 @@ public class IngredientsController {
     }
 
     @GetMapping
-    public Iterable<Ingredient> allToppings(){
+    public Iterable<Ingredient> allIngredients(){
         return this.ingredientsRepository.findAll();
     }
 
@@ -29,7 +29,7 @@ public class IngredientsController {
     }
 
     @GetMapping("/new/{name}")
-    public String addCheese(@PathVariable(value = "name") String name) {
+    public String addIngredient(@PathVariable(value = "name") String name) {
         Ingredient ingredient = new Ingredient(name);
         if(this.ingredientsRepository.save(ingredient) != null){
             return "Ingredient added successfully";

@@ -2,7 +2,6 @@ package com.pizzashop.pizzashop.Models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +12,9 @@ public class Pizza {
     private long id;
 
     @NotNull
-    @Size(max=50)
-    private String name;
+    @OneToOne
+    @ElementCollection
+    private PizzaType type;
     @NotNull
     private Crust crust;
     @NotNull
@@ -32,8 +32,8 @@ public class Pizza {
 
     protected Pizza(){}
 
-    public Pizza(String name, Sauce sauce, Cheese cheese, Crust crust, List<String> toppings, List<String> ingredients){
-        this.name = name;
+    public Pizza(PizzaType name, Sauce sauce, Cheese cheese, Crust crust, List<String> toppings, List<String> ingredients){
+        this.type = name;
         this.sauce = sauce;
         this.cheese = cheese;
         this.crust = crust;
@@ -41,12 +41,12 @@ public class Pizza {
         this.ingredients = ingredients;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setType(PizzaType type){
+        this.type = type;
     }
 
-    public String getName(){
-        return this.name;
+    public PizzaType getType(){
+        return this.type;
     }
 
     public Crust getCrust() {
@@ -87,5 +87,13 @@ public class Pizza {
 
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

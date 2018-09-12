@@ -24,7 +24,7 @@ public class ToppingsController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Topping> all(@PathVariable(value= "id") Long id){
+    public Optional<Topping> byId(@PathVariable(value = "id") Long id){
         return this.toppingsRepository.findById(id);
     }
 }

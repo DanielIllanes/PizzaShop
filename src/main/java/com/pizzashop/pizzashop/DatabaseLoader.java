@@ -1,9 +1,7 @@
 package com.pizzashop.pizzashop;
 
 import com.pizzashop.pizzashop.Models.*;
-import com.pizzashop.pizzashop.Repositories.IngredientsRepository;
-import com.pizzashop.pizzashop.Repositories.PizzasRepository;
-import com.pizzashop.pizzashop.Repositories.ToppingsRepository;
+import com.pizzashop.pizzashop.Repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +13,16 @@ public class DatabaseLoader implements CommandLineRunner {
     private ToppingsRepository toppingsRepository;
     private IngredientsRepository ingredientsRepository;
     private PizzasRepository pizzasRepository;
+    private PizzasTypesRepository pizzasTypesRepository;
+    private ProductsRepository productsRepository;
 
-    public DatabaseLoader(ToppingsRepository toppingsRepository, IngredientsRepository ingredientsRepository, PizzasRepository pizzasRepository){
+    public DatabaseLoader(ToppingsRepository toppingsRepository, IngredientsRepository ingredientsRepository,
+                          PizzasRepository pizzasRepository, PizzasTypesRepository pizzasTypesRepository, ProductsRepository productsRepository){
         this.toppingsRepository = toppingsRepository;
         this.ingredientsRepository = ingredientsRepository;
         this.pizzasRepository = pizzasRepository;
+        this.pizzasTypesRepository = pizzasTypesRepository;
+        this.productsRepository = productsRepository;
     }
 
     @Override
@@ -59,15 +62,33 @@ public class DatabaseLoader implements CommandLineRunner {
         ingredients.add("2");
         ingredients.add("4");
 
-        Pizza pizza1 = new Pizza("Hawaiian", Sauce.TOMATO, Cheese.CHEDDAR, Crust.THIN, toppings , ingredients);
-        Pizza pizza2 = new Pizza("Spagnole", Sauce.TOMATO, Cheese.ROQUEFORT, Crust.THIN, toppings, ingredients);
-        Pizza pizza3 = new Pizza("Brazilian", Sauce.TOMATO, Cheese.MANCHEGO, Crust.THIN, toppings, ingredients);
-        Pizza pizza4 = new Pizza("Veggie", Sauce.TOMATO, Cheese.ROQUEFORT, Crust.FILLED_WITH_CHEESE, toppings, ingredients);
+        PizzaType pizzaType1 = new PizzaType("Hawaiian");
+        PizzaType pizzaType2 = new PizzaType("Spagnole");
+        PizzaType pizzaType3 = new PizzaType("Brazilian");
+        PizzaType pizzaType4 = new PizzaType("Veggie");
+
+        this.pizzasTypesRepository.save(pizzaType1);
+        this.pizzasTypesRepository.save(pizzaType2);
+        this.pizzasTypesRepository.save(pizzaType3);
+        this.pizzasTypesRepository.save(pizzaType4);
+
+        Pizza pizza1 = new Pizza(pizzaType1, Sauce.TOMATO, Cheese.CHEDDAR, Crust.THIN, toppings , ingredients);
+        Pizza pizza2 = new Pizza(pizzaType2, Sauce.TOMATO, Cheese.ROQUEFORT, Crust.THIN, toppings, ingredients);
+        Pizza pizza3 = new Pizza(pizzaType3, Sauce.TOMATO, Cheese.MANCHEGO, Crust.THIN, toppings, ingredients);
+        Pizza pizza4 = new Pizza(pizzaType4, Sauce.TOMATO, Cheese.ROQUEFORT, Crust.FILLED_WITH_CHEESE, toppings, ingredients);
 
         this.pizzasRepository.save(pizza1);
         this.pizzasRepository.save(pizza2);
         this.pizzasRepository.save(pizza3);
         this.pizzasRepository.save(pizza4);
+
+        Product product1 = new Product(ProductType.PIZZA,pizza1.getId());
+        Product product2 = new Product(ProductType.PIZZA,pizza2.getId());
+        Product product3 = new Product(ProductType.PIZZA,pizza3.getId());
+
+        this.productsRepository.save(product1);
+        this.productsRepository.save(product2);
+        this.productsRepository.save(product3);
 
         System.out.println(" -- Database has been initialized");
     }

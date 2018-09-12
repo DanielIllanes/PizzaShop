@@ -1,6 +1,5 @@
 package com.pizzashop.pizzashop.Controllers;
 
-import com.pizzashop.pizzashop.Models.Ingredient;
 import com.pizzashop.pizzashop.Models.Pizza;
 import com.pizzashop.pizzashop.Repositories.IngredientsRepository;
 import com.pizzashop.pizzashop.Repositories.PizzasRepository;
