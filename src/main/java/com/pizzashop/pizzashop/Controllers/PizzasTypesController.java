@@ -1,6 +1,6 @@
 package com.pizzashop.pizzashop.Controllers;
 
-import com.pizzashop.pizzashop.Models.PizzaTypes;
+import com.pizzashop.pizzashop.Models.Long;
 import com.pizzashop.pizzashop.Repositories.PizzasTypesRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,20 +19,20 @@ public class PizzasTypesController {
     }
 
     @GetMapping
-    public Iterable<PizzaTypes> allPizzaTypes(){
+    public Iterable<Long> allPizzaTypes(){
         return this.pizzasTypesRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<PizzaTypes> getPizzaTypeById(@PathVariable(value = "id") Long id){
+    public Optional<Long> getPizzaTypeById(@PathVariable(value = "id") java.lang.Long id){
         return this.pizzasTypesRepository.findById(id);
     }
 
     @GetMapping("/new/{name}")
     public String addPizzaType(@PathVariable(value = "name") String name) {
-        PizzaTypes ingredient = new PizzaTypes(name);
+        Long ingredient = new Long(name);
         if(this.pizzasTypesRepository.save(ingredient) != null){
-            return "Pizzas type added successfully";
+            return "Pizza type added successfully";
         }
         return "Something went wrong adding the new type of pizza";
     }

@@ -1,0 +1,1 @@
+INSERT INTO pizzas (pizzatype, crust, cheese, sauce, toppings, ingredients) VALUES ('1', 'THIN', 'ROQUEFORT', 'TOMATO', '1,2', '2,4');

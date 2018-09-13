@@ -4,15 +4,15 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "toppings")
-public class Toppings {
+public class Topping {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String name;
 
-    protected Toppings(){}
+    protected Topping(){}
 
-    public Toppings(String name){
+    public Topping(String name){
         this.name = name;
     }
 

@@ -1,5 +1,7 @@
 package com.pizzashop.pizzashop.Models;
 
+import com.pizzashop.pizzashop.StringListConverter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -7,16 +9,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "pizzas")
-public class Pizzas {
+public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    @NotNull
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @Enumerated(EnumType.STRING)
-    private PizzaTypes pizzatype;
+    private String pizzatype;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -30,18 +28,16 @@ public class Pizzas {
     @Enumerated(EnumType.STRING)
     private Sauce sauce;
 
-    @ElementCollection
-    @CollectionTable(name = "toppings")
-    private List<String> toppings = new ArrayList();
+    //@Column(name="toppings")
+    private String toppings;
 
-    @ElementCollection
-    @CollectionTable(name = "ingredients")
-    private List<String> ingredients = new ArrayList();
+    //@CollectionTable(name = "ingredients")
+    private String ingredients;
 
-    protected Pizzas(){}
+    protected Pizza(){}
 
-    public Pizzas(PizzaTypes name, Sauce sauce, Cheese cheese, Crust crust, List<String> toppings, List<String> ingredients){
-        this.pizzatype = name;
+    public Pizza(String pizzatype, Sauce sauce, Cheese cheese, Crust crust, String toppings, String ingredients){
+        this.pizzatype = pizzatype;
         this.sauce = sauce;
         this.cheese = cheese;
         this.crust = crust;
@@ -52,11 +48,11 @@ public class Pizzas {
         System.out.println(crust.name());
     }
 
-    public void setPizzatype(PizzaTypes pizzatype){
+    public void setPizzatype(String pizzatype){
         this.pizzatype = pizzatype;
     }
 
-    public PizzaTypes getPizzatype(){
+    public String getPizzatype(){
         return this.pizzatype;
     }
 
@@ -84,19 +80,19 @@ public class Pizzas {
         this.sauce = sauce;
     }
 
-    public List<String> getToppings() {
+    public String getToppings() {
         return toppings;
     }
 
-    public void setToppings(List<String> toppings) {
+    public void setToppings(String toppings) {
         this.toppings = toppings;
     }
 
-    public List<String> getIngredients() {
+    public String getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<String> ingredients) {
+    public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
 }

@@ -1,23 +1,21 @@
 package com.pizzashop.pizzashop.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class PizzaTypes {
+@Table(name = "pizzas_types")
+public class Long {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull
     private String name;
 
-    protected PizzaTypes(){}
+    protected Long(){}
 
-    public PizzaTypes(String name){
+    public Long(String name){
         this.name = name;
     }
 
