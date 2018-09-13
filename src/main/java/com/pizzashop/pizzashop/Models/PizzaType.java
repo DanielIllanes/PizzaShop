@@ -5,17 +5,17 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pizzas_types")
-public class Long {
+public class PizzaType {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
     @NotNull
     private String name;
 
-    protected Long(){}
+    protected PizzaType(){}
 
-    public Long(String name){
+    public PizzaType(String name){
         this.name = name;
     }
 

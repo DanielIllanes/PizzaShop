@@ -1,11 +1,7 @@
 package com.pizzashop.pizzashop.Models;
 
-import com.pizzashop.pizzashop.StringListConverter;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "pizzas")
@@ -28,10 +24,8 @@ public class Pizza {
     @Enumerated(EnumType.STRING)
     private Sauce sauce;
 
-    //@Column(name="toppings")
     private String toppings;
 
-    //@CollectionTable(name = "ingredients")
     private String ingredients;
 
     protected Pizza(){}

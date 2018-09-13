@@ -4,7 +4,6 @@ import com.pizzashop.pizzashop.Models.Pizza;
 import com.pizzashop.pizzashop.Repositories.IngredientsRepository;
 import com.pizzashop.pizzashop.Repositories.PizzasRepository;
 import com.pizzashop.pizzashop.Repositories.PizzasTypesRepository;
-import com.pizzashop.pizzashop.StringListConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,8 +39,7 @@ public class PizzasController {
 
     public String convertPizzaType(String pizzaTypeId){
         long id = Integer.parseInt(pizzaTypeId);
-        String.format("%s",this.pizzasTypesRepository.findById(id));
-        return "0";
+        return String.format("%s", this.pizzasTypesRepository.findById(id).get().getName());
     }
 
     public String convertIngredients(String ingredientsIdList){
