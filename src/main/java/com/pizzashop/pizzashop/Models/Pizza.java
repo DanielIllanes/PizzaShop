@@ -37,9 +37,6 @@ public class Pizza {
         this.crust = crust;
         this.toppings = toppings;
         this.ingredients = ingredients;
-        System.out.println(crust);
-        System.out.println(crust.toString());
-        System.out.println(crust.name());
     }
 
     public void setPizzatype(String pizzatype){
