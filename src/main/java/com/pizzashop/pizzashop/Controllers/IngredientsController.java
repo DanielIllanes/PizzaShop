@@ -2,10 +2,7 @@ package com.pizzashop.pizzashop.Controllers;
 
 import com.pizzashop.pizzashop.Models.Ingredient;
 import com.pizzashop.pizzashop.Repositories.IngredientsRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -28,17 +25,8 @@ public class IngredientsController {
         return this.ingredientsRepository.findById(id);
     }
 
-    @GetMapping("/new/{name}")
-    public String addIngredient(@PathVariable(value = "name") String name) {
-        Ingredient ingredient = new Ingredient(name);
-        try{
-            if(this.ingredientsRepository.save(ingredient) != null){
-                return "Ingredient added successfully";
-            }
-        }catch (Exception ex){
-            System.out.println(ex);
-        }
-        return "Something went wrong adding the new Ingredient";
-
+    @PostMapping()
+    Ingredient newIngredient(@RequestBody Ingredient newIngredient) {
+        return this.ingredientsRepository.save(newIngredient);
     }
 }

@@ -5,9 +5,7 @@ import com.pizzashop.pizzashop.Repositories.IngredientsRepository;
 import com.pizzashop.pizzashop.Repositories.PizzasRepository;
 import com.pizzashop.pizzashop.Repositories.PizzasTypesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,13 +26,18 @@ public class PizzasController {
         this.pizzasRepository = pizzasRepository;
     }
 
-    @GetMapping()
+    @GetMapping
     public Iterable<Pizza> allPizzas(){
         Iterable<Pizza> pizzas =this.pizzasRepository.findAll();
         pizzas.forEach(item -> item.setPizzatype(convertPizzaType(item.getPizzatype())));
         pizzas.forEach(item -> item.setToppings(convertToppings(item.getToppings())));
         pizzas.forEach(item -> item.setIngredients(convertIngredients(item.getIngredients())));
         return pizzas;
+    }
+
+    @PostMapping
+    public Pizza newPizzaType(@RequestBody Pizza newPizzaType) {
+        return this.pizzasRepository.save(newPizzaType);
     }
 
     public String convertPizzaType(String pizzaTypeId){

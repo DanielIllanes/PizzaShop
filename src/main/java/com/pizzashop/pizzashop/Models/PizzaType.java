@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "pizzas_types")
 public class PizzaType {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull

@@ -1,22 +1,20 @@
 package com.pizzashop.pizzashop.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
     private ProductType productType;
-    private long productId;
+    private String productId;
 
     protected Product(){}
 
-    public Product(ProductType productType, Long productId){
+    public Product(ProductType productType, String productId){
         this.productType = productType;
         this.productId = productId;
     }
@@ -37,11 +35,11 @@ public class Product {
         this.productType = productType;
     }
 
-    public long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 }

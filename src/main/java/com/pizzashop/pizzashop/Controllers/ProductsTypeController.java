@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/productTypes")
-public class ProdutsTypeController {
+@RequestMapping("/products-types")
+public class ProductsTypeController {
     @GetMapping()
     public ProductType[] allProductsTypes() {return ProductType.values();}
 }

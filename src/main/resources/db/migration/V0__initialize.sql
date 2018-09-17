@@ -5,7 +5,7 @@ CREATE TABLE toppings(
 
 CREATE TABLE ingredients(
   id     BIGINT PRIMARY KEY AUTO_INCREMENT,
-  name   VARCHAR(100)
+  name   VARCHAR(255)
 );
 
 CREATE TABLE pizzas(
@@ -20,12 +20,11 @@ CREATE TABLE pizzas(
 
 CREATE TABLE pizzas_types(
   id     BIGINT PRIMARY KEY AUTO_INCREMENT,
-  name   VARCHAR(100)
+  name   VARCHAR(255)
 );
 
-CREATE TABLE product(
+CREATE TABLE products(
   id            BIGINT PRIMARY KEY AUTO_INCREMENT,
-  product_id    BIGINT,
-  product_type  INTEGER,
+  productType   VARCHAR(255),
   productId     BIGINT
 );

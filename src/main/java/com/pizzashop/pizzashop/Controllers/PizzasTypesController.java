@@ -2,15 +2,12 @@ package com.pizzashop.pizzashop.Controllers;
 
 import com.pizzashop.pizzashop.Models.PizzaType;
 import com.pizzashop.pizzashop.Repositories.PizzasTypesRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/pizzaTypes")
+@RequestMapping("/pizzas-types")
 public class PizzasTypesController {
     private PizzasTypesRepository pizzasTypesRepository;
 
@@ -28,12 +25,8 @@ public class PizzasTypesController {
         return this.pizzasTypesRepository.findById(id);
     }
 
-    @GetMapping("/new/{name}")
-    public String addPizzaType(@PathVariable(value = "name") String name) {
-        PizzaType newPizzaType = new PizzaType(name);
-        if(this.pizzasTypesRepository.save(newPizzaType) != null){
-            return "Pizza type added successfully";
-        }
-        return "Something went wrong adding the new type of pizza";
+    @PostMapping
+    public PizzaType newPizzaType(@RequestBody PizzaType newPizzaType) {
+        return this.pizzasTypesRepository.save(newPizzaType);
     }
 }
