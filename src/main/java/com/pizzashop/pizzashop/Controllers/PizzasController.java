@@ -5,6 +5,8 @@ import com.pizzashop.pizzashop.Repositories.IngredientsRepository;
 import com.pizzashop.pizzashop.Repositories.PizzasRepository;
 import com.pizzashop.pizzashop.Repositories.PizzasTypesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -36,8 +38,8 @@ public class PizzasController {
     }
 
     @PostMapping
-    public Pizza newPizzaType(@RequestBody Pizza newPizzaType) {
-        return this.pizzasRepository.save(newPizzaType);
+    ResponseEntity<Pizza> newPizza(@RequestBody Pizza newPizzaType) {
+        return new ResponseEntity<>(this.pizzasRepository.save(newPizzaType), HttpStatus.OK);
     }
 
     public String convertPizzaType(String pizzaTypeId){

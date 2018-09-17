@@ -2,6 +2,8 @@ package com.pizzashop.pizzashop.Controllers;
 
 import com.pizzashop.pizzashop.Models.PizzaType;
 import com.pizzashop.pizzashop.Repositories.PizzasTypesRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -26,7 +28,7 @@ public class PizzasTypesController {
     }
 
     @PostMapping
-    public PizzaType newPizzaType(@RequestBody PizzaType newPizzaType) {
-        return this.pizzasTypesRepository.save(newPizzaType);
+    ResponseEntity<PizzaType> newPizzaType(@RequestBody PizzaType newPizzaType) {
+        return new ResponseEntity<>(this.pizzasTypesRepository.save(newPizzaType), HttpStatus.OK);
     }
 }

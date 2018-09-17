@@ -6,17 +6,18 @@ import javax.persistence.*;
 @Table(name = "products")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private ProductType productType;
-    private String productId;
+    private String product_type;
+
+    private String product_id;
 
     protected Product(){}
 
-    public Product(ProductType productType, String productId){
-        this.productType = productType;
-        this.productId = productId;
+    public Product(String product_type, String product_id){
+        this.product_type = product_type;
+        this.product_id = product_id;
     }
 
     public long getId() {
@@ -27,19 +28,19 @@ public class Product {
         this.id = id;
     }
 
-    public ProductType getProductType() {
-        return productType;
+    public String getProductType() {
+        return product_type;
     }
 
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
+    public void setProductType(String productType) {
+        this.product_type = productType;
     }
 
     public String getProductId() {
-        return productId;
+        return product_id;
     }
 
     public void setProductId(String productId) {
-        this.productId = productId;
+        this.product_id = productId;
     }
 }
