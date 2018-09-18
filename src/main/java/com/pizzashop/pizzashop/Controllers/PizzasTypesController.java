@@ -29,6 +29,6 @@ public class PizzasTypesController {
 
     @PostMapping
     ResponseEntity<PizzaType> newPizzaType(@RequestBody PizzaType newPizzaType) {
-        return new ResponseEntity<>(this.pizzasTypesRepository.save(newPizzaType), HttpStatus.OK);
+        return new ResponseEntity<>(this.pizzasTypesRepository.save(newPizzaType), HttpStatus.CREATED);
     }
 }

@@ -39,7 +39,7 @@ public class PizzasController {
 
     @PostMapping
     ResponseEntity<Pizza> newPizza(@RequestBody Pizza newPizzaType) {
-        return new ResponseEntity<>(this.pizzasRepository.save(newPizzaType), HttpStatus.OK);
+        return new ResponseEntity<>(this.pizzasRepository.save(newPizzaType), HttpStatus.CREATED);
     }
 
     public String convertPizzaType(String pizzaTypeId){

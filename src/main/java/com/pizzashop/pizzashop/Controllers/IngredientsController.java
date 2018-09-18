@@ -4,6 +4,8 @@ import com.pizzashop.pizzashop.Models.Ingredient;
 import com.pizzashop.pizzashop.Repositories.IngredientsRepository;
 import com.sun.deploy.net.HttpResponse;
 import jdk.net.SocketFlow;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/ingredients")
+@RequestMapping("api/v1/ingredients")
 public class IngredientsController {
     private IngredientsRepository ingredientsRepository;
 
@@ -21,8 +23,8 @@ public class IngredientsController {
     }
 
     @GetMapping
-    public Iterable<Ingredient> allIngredients(){
-        return this.ingredientsRepository.findAll();
+    public Page<Ingredient> allIngredients(Pageable pageable){
+        return this.ingredientsRepository.findAll(pageable);
     }
 
     @GetMapping("/{id}")
@@ -32,6 +34,6 @@ public class IngredientsController {
 
     @PostMapping
     ResponseEntity<Ingredient> newIngredient(@RequestBody Ingredient newIngredient) {
-        return new ResponseEntity<>(this.ingredientsRepository.save(newIngredient), HttpStatus.OK);
+        return new ResponseEntity<>(this.ingredientsRepository.save(newIngredient), HttpStatus.CREATED);
     }
 }

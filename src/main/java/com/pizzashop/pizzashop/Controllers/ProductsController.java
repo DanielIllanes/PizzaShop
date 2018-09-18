@@ -25,7 +25,7 @@ public class ProductsController {
 
     @PostMapping
     ResponseEntity<Product> newProduct(@RequestBody Product newProduct) {
-        return new ResponseEntity<>(this.productsRepository.save(newProduct), HttpStatus.OK);
+        return new ResponseEntity<>(this.productsRepository.save(newProduct), HttpStatus.CREATED);
     }
 
 }
