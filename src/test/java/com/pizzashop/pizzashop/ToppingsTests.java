@@ -33,12 +33,12 @@ public class ToppingsTests {
 
     @Test
     public void getAllToppingsTest(){
-        //THERE ARE 5 INGREDIENTS ALREADY IN DATABASE
+        //THERE ARE 7 INGREDIENTS ALREADY IN DATABASE
         Iterable<Topping> toppingsList = this.toppingsRepository.findAll();
-        int numberOfTOppings = 0;
+        int numberOfToppings = 0;
         for (Topping topping: toppingsList ) {
-            numberOfTOppings++;
+            numberOfToppings++;
         }
-        assertEquals(7, numberOfTOppings);
+        assertEquals(7, numberOfToppings);
     }
 }

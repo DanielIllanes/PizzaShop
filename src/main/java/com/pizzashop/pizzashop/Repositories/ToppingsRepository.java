@@ -1,6 +1,5 @@
 package com.pizzashop.pizzashop.Repositories;
 
-
 import com.pizzashop.pizzashop.Models.Topping;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
