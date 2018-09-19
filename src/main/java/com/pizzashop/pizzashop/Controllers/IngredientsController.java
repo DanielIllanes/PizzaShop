@@ -28,8 +28,11 @@ public class IngredientsController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Ingredient> byId(@PathVariable(value= "id") Long id){
-        return this.ingredientsRepository.findById(id);
+    ResponseEntity<Ingredient> byId(@PathVariable(value= "id") Long id){
+        if(!this.ingredientsRepository.findById(id).isPresent()) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(this.ingredientsRepository.findById(id),HttpStatus.OK);
     }
 
     @PostMapping

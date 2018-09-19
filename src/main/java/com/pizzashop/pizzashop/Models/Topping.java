@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "toppings")
 public class Topping {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
 
