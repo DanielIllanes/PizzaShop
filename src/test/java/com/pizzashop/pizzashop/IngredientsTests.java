@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -19,26 +23,42 @@ public class IngredientsTests {
 
     @Test
     public void addNewIngredientTest(){
-        Ingredient newIngredient = new Ingredient("Tomato");
+        Ingredient newIngredient;
+        Ingredient savedIngredient;
+        Given:
+        newIngredient = new Ingredient("Tomato");
+
+        When:
         this.ingredientsRepository.save(newIngredient);
-        Ingredient savedIngredient = this.ingredientsRepository.findByName(newIngredient.getName());
-        assertEquals(newIngredient.getName(), savedIngredient.getName());
+        savedIngredient = this.ingredientsRepository.findByName(newIngredient.getName());
+
+        Then:
+        assertEquals(newIngredient.getName(),savedIngredient.getName());
     }
 
     @Test
     public void findIngredientByNameTest(){
-        String ingredientName = "Yeast";
-        assertEquals(ingredientName, this.ingredientsRepository.findByName(ingredientName).getName());
+        String ingredientName;
+        String resultName;
+
+        Given:
+        ingredientName = "Yeast";
+
+        When:
+        resultName = this.ingredientsRepository.findByName(ingredientName).getName();
+
+        Then:
+        assertEquals(ingredientName, resultName);
     }
 
     @Test
     public void getAllIngredientsTest(){
-        //THERE ARE 5 INGREDIENTS ALREADY IN DATABASE
-        Iterable<Ingredient> ingredientsList = this.ingredientsRepository.findAll();
-        int numberOfIngredients = 0;
-        for (Ingredient i: ingredientsList ) {
-            numberOfIngredients++;
-        }
-        assertEquals(5, numberOfIngredients);
+        List<Ingredient> ingredientsList;
+
+        When:
+        ingredientsList = (List<Ingredient>) this.ingredientsRepository.findAll();
+
+        Then:
+        assertThat(ingredientsList, hasSize(5));
     }
 }

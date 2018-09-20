@@ -8,6 +8,7 @@ public class Topping {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String name;
 
     protected Topping(){}

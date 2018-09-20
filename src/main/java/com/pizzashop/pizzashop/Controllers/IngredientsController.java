@@ -10,11 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import java.util.Optional;
-
 @RestController
-@RequestMapping("api/v1/ingredients")
+@RequestMapping("/ingredients")
 public class IngredientsController {
     private IngredientsRepository ingredientsRepository;
 
@@ -29,8 +26,8 @@ public class IngredientsController {
 
     @GetMapping("/{id}")
     ResponseEntity<Ingredient> byId(@PathVariable(value= "id") Long id){
-        if(!this.ingredientsRepository.findById(id).isPresent()) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        if(!this.ingredientsRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
         }
         return new ResponseEntity(this.ingredientsRepository.findById(id),HttpStatus.OK);
     }

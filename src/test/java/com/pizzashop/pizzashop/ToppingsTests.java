@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -19,26 +23,43 @@ public class ToppingsTests {
 
     @Test
     public void findToppingByNameTest(){
-        String toppingName = "Onions";
-        assertEquals(toppingName, this.toppingsRepository.findByName(toppingName).getName());
+        String toppingName;
+        String resultName;
+
+        Given:
+        toppingName = "Onions";
+
+        When:
+        resultName = this.toppingsRepository.findByName(toppingName).getName();
+
+        Then:
+        assertEquals(toppingName, resultName);
     }
 
     @Test
     public void addNewToppingTest(){
-        Topping newTopping = new Topping("Spinaca");
+        Topping newTopping;
+        Topping savedTopping;
+
+        Given:
+        newTopping = new Topping("Barbecue");
+
+        When:
         this.toppingsRepository.save(newTopping);
-        Topping savedTopping = this.toppingsRepository.findByName(newTopping.getName());
-        assertEquals(newTopping.getName(), savedTopping.getName());
+        savedTopping = this.toppingsRepository.findByName(newTopping.getName());
+
+        Then:
+        assertEquals(newTopping.getName(),savedTopping.getName());
     }
 
     @Test
     public void getAllToppingsTest(){
-        //THERE ARE 7 INGREDIENTS ALREADY IN DATABASE
-        Iterable<Topping> toppingsList = this.toppingsRepository.findAll();
-        int numberOfToppings = 0;
-        for (Topping topping: toppingsList ) {
-            numberOfToppings++;
-        }
-        assertEquals(7, numberOfToppings);
+        List<Topping> toppingsList;
+
+        When:
+        toppingsList = (List<Topping>) this.toppingsRepository.findAll();
+
+        Then:
+        assertThat(toppingsList, hasSize(7));
     }
 }

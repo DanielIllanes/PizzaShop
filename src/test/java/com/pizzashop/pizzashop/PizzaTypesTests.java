@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -19,28 +23,43 @@ public class PizzaTypesTests {
 
     @Test
     public void getAllPizzasTypesTest(){
-        //THERE ARE 7 INGREDIENTS ALREADY IN DATABASE
-        Iterable<PizzaType> toppingsList = this.pizzasTypesRepository.findAll();
-        int numberOfPizzasTypes = 0;
-        for (PizzaType pizzaType: toppingsList ) {
-            numberOfPizzasTypes++;
-        }
-        assertEquals(4, numberOfPizzasTypes);
+        List<PizzaType> pizzaTypeList;
+
+        When:
+        pizzaTypeList = (List<PizzaType>) this.pizzasTypesRepository.findAll();
+
+        Then:
+        assertThat(pizzaTypeList, hasSize(4));
     }
 
     @Test
     public void findPizzaTypeByNameTest(){
-        String pizzaTypeName = "Hawaiian";
-        assertEquals(pizzaTypeName, this.pizzasTypesRepository.findByName(pizzaTypeName).getName());
+        String pizzaTypeName;
+        String resultName;
+
+        Given:
+        pizzaTypeName = "Hawaiian";
+
+        When:
+        resultName = this.pizzasTypesRepository.findByName(pizzaTypeName).getName();
+
+        Then:
+        assertEquals(pizzaTypeName, resultName);
     }
 
     @Test
     public void addNewPizzaTypeTest(){
-        PizzaType newPizzaType = new PizzaType("Barbecue");
+        PizzaType newPizzaType;
+        PizzaType savedPizzaType;
+
+        Given:
+        newPizzaType = new PizzaType("Barbecue");
+
+        When:
         this.pizzasTypesRepository.save(newPizzaType);
-        PizzaType savedTopping = this.pizzasTypesRepository.findByName(newPizzaType.getName());
-        assertEquals(newPizzaType.getName(), savedTopping.getName());
+        savedPizzaType = this.pizzasTypesRepository.findByName(newPizzaType.getName());
+
+        Then:
+        assertEquals(newPizzaType.getName(),savedPizzaType.getName());
     }
-
-
 }

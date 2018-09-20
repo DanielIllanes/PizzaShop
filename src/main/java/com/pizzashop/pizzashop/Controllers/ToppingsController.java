@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/toppings")
+@RequestMapping("/toppings")
 public class ToppingsController {
     private ToppingsRepository toppingsRepository;
 
@@ -27,7 +27,7 @@ public class ToppingsController {
     @GetMapping("/{id}")
     ResponseEntity<Topping> byId(@PathVariable(value= "id") Long id){
         if(!this.toppingsRepository.findById(id).isPresent()) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
         return new ResponseEntity(this.toppingsRepository.findById(id),HttpStatus.OK);
     }
