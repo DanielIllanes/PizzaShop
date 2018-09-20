@@ -24,7 +24,7 @@ public class PizzasTypesController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PizzaType> getPizzaTypeById(@PathVariable(value = "id") Long id){
-        if(!this.pizzasTypesRepository.findById(id).isPresent()){
+        if(!this.pizzasTypesRepository.existsById(id)){
             return ResponseEntity.notFound().build();
         }
         return new ResponseEntity(this.pizzasTypesRepository.findById(id),HttpStatus.OK);

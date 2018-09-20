@@ -26,7 +26,7 @@ public class ToppingsController {
 
     @GetMapping("/{id}")
     ResponseEntity<Topping> byId(@PathVariable(value= "id") Long id){
-        if(!this.toppingsRepository.findById(id).isPresent()) {
+        if(!this.toppingsRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
         return new ResponseEntity(this.toppingsRepository.findById(id),HttpStatus.OK);
