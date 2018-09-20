@@ -36,6 +36,13 @@ public class PizzasController {
         pizzas.forEach(item -> item.setIngredients(convertIngredients(item.getIngredients())));
         return pizzas;
     }
+    @GetMapping("/{id}")
+    ResponseEntity<Pizza> byId(@PathVariable(value= "id") Long id){
+        if(!this.pizzasRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
+        return new ResponseEntity(this.pizzasRepository.findById(id),HttpStatus.OK);
+    }
 
     @PostMapping
     ResponseEntity<Pizza> newPizza(@RequestBody Pizza newPizzaType) {
