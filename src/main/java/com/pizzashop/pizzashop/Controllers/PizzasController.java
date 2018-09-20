@@ -5,6 +5,8 @@ import com.pizzashop.pizzashop.Repositories.IngredientsRepository;
 import com.pizzashop.pizzashop.Repositories.PizzasRepository;
 import com.pizzashop.pizzashop.Repositories.PizzasTypesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +31,8 @@ public class PizzasController {
     }
 
     @GetMapping
-    public Iterable<Pizza> allPizzas(){
-        Iterable<Pizza> pizzas =this.pizzasRepository.findAll();
+    public Page<Pizza> allPizzas(Pageable pageable){
+        Page<Pizza> pizzas = this.pizzasRepository.findAll(pageable);
         pizzas.forEach(item -> item.setPizzatype(convertPizzaType(item.getPizzatype())));
         pizzas.forEach(item -> item.setToppings(convertToppings(item.getToppings())));
         pizzas.forEach(item -> item.setIngredients(convertIngredients(item.getIngredients())));
