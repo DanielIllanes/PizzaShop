@@ -86,4 +86,12 @@ public class Pizza {
     public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

@@ -25,6 +25,12 @@ CREATE TABLE pizzas_types(
 
 CREATE TABLE products(
   id            BIGINT PRIMARY KEY AUTO_INCREMENT,
-  productType   INTEGER,
+  productType   VARCHAR(255),
   productId     INTEGER
+);
+
+CREATE TABLE orders(
+  id                   BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name                 VARCHAR(255),
+  orderedProducts      VARCHAR(255)
 );
